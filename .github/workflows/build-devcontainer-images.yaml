@@ -1,0 +1,69 @@
+name: Build devcontainer images
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "images/*/.devcontainer/Dockerfile"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      changed_files: ${{ steps.filter.outputs.devcontainers_files }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            devcontainers:
+              - "images/*/.devcontainer/Dockerfile"
+
+  build-devcontainer-images:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.changed_files != '[]' && needs.detect-changes.outputs.changed_files != ''
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dockerfile: ${{ fromJson(needs.detect-changes.outputs.changed_files) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Derive build context and image name
+        id: prep
+        run: |
+          DOCKERFILE='${{ matrix.dockerfile }}'                            # e.g. images/base/.devcontainer/Dockerfile
+          CONTEXT="$(dirname "$DOCKERFILE")"                               # => images/base/.devcontainer
+          IMAGE_NAME="$(basename "$(dirname "$(dirname "$DOCKERFILE")")")" # => base
+          echo "context=$CONTEXT" >> "$GITHUB_OUTPUT"
+          echo "image=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & push ${{ steps.prep.outputs.image }}
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ steps.prep.outputs.context }}
+          file: ${{ matrix.dockerfile }}
+          push: true
+          tags: |
+            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.sha }}-${{ github.run_number }}
+            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
