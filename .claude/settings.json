@@ -1,0 +1,16 @@
+{
+  "name": "vsc-devcontainers-base",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "runArgs": [
+    "--name",
+    "vsc-devcontainers-base",
+    "--add-host",
+    "host.docker.internal:host-gateway"
+  ]
+}
