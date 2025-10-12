@@ -17,7 +17,7 @@ jobs:
     outputs:
       changed_files: ${{ steps.filter.outputs.devcontainers_files }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dorny/paths-filter@v3
         id: filter
         with:
@@ -35,7 +35,7 @@ jobs:
       matrix:
         dockerfile: ${{ fromJson(needs.detect-changes.outputs.changed_files) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Derive build context and image name
         id: prep
