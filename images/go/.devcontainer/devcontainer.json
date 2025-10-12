@@ -1,5 +1,5 @@
 {
-  "name": "vsc-devcontainers-base",
+  "name": "vsc-devcontainers-go",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -10,8 +10,9 @@
   },
   "runArgs": [
     "--name",
-    "vsc-devcontainers-base",
+    "vsc-devcontainers-go",
     "--add-host",
     "host.docker.internal:host-gateway"
-  ]
+  ],
+  "postAttachCommand": "go version"
 }

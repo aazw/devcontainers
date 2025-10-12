@@ -608,7 +608,7 @@ ARG USER_GID=$USER_UID
 
 ARG DEBIAN_SUDO_VERSION
 RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -s /bin/bash -m $USERNAME \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
         sudo=${DEBIAN_SUDO_VERSION} \
