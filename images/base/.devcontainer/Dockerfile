@@ -6,6 +6,7 @@
 # 14 (Forky)
 
 # for main image
+# renovate: datasource=docker depName=debian packageName=debian versioning=docker
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # for builder images

@@ -19,6 +19,12 @@
   ],
   "packageRules": [
     {
+      "description": "Separate devcontainers/base updates by image directory",
+      "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchPackageNames": ["ghcr.io/aazw/devcontainers/base"],
+      "groupName": "{{parentDir}}: devcontainers/base"
+    },
+    {
       "description": "Group base images - major updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
       "matchPackageNames": ["golang", "rust", "node", "python"],
