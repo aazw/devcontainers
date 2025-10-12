@@ -7,6 +7,58 @@
   "prConcurrentLimit": 10,
   "minimumReleaseAge": "7 days",
   "ignorePaths": [],
-  "customManagers": [],
-  "packageRules": []
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update _VERSION variables in Dockerfiles",
+      "fileMatch": ["/(^|/|\\.)Dockerfile$/", "/(^|/)Dockerfile\\.[^/]*$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
+      ]
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Group base images - major updates by image directory",
+      "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchPackageNames": ["golang", "rust", "node", "python"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "{{parentDir}}: base images (major)"
+    },
+    {
+      "description": "Group base images - minor/patch updates by image directory",
+      "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchPackageNames": ["golang", "rust", "node", "python"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "{{parentDir}}: base images (minor/patch)"
+    },
+    {
+      "description": "Group packages - major updates by image directory",
+      "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchDatasources": [
+        "repology",
+        "github-tags",
+        "crate",
+        "npm",
+        "pypi",
+        "github-releases"
+      ],
+      "matchUpdateTypes": ["major"],
+      "groupName": "{{parentDir}}: packages (major)"
+    },
+    {
+      "description": "Group packages - minor/patch updates by image directory",
+      "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchDatasources": [
+        "repology",
+        "github-tags",
+        "crate",
+        "npm",
+        "pypi",
+        "github-releases"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "{{parentDir}}: packages (minor/patch)"
+    }
+  ]
 }

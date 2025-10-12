@@ -2,7 +2,7 @@ name: Build devcontainer images
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths:
       - "images/*/.devcontainer/Dockerfile"
   workflow_dispatch:
@@ -63,7 +63,8 @@ jobs:
           file: ${{ matrix.dockerfile }}
           push: true
           tags: |
-            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.sha }}-${{ github.run_number }}
+            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.sha }}
+            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.run_number }}
             ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

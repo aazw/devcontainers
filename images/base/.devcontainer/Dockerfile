@@ -9,94 +9,168 @@
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # for builder images
+# renovate: datasource=docker depName=golang packageName=golang versioning=docker
 ARG DOCKER_GOLANG_VERSION=1.25.1
+# renovate: datasource=docker depName=rust packageName=rust versioning=docker
 ARG DOCKER_RUST_VERSION=1.90.0
+# renovate: datasource=docker depName=node packageName=node versioning=docker
 ARG DOCKER_NODE_VERSION=22.19.0
+# renovate: datasource=docker depName=python packageName=python versioning=docker
 ARG DOCKER_PYTHON_VERSION=3.13
 
 # for debian tools (apt-get)
-# https://packages.debian.org/search?keywords=<package_name>
+# * https://packages.debian.org/search?keywords=<package_name>
+# renovate: datasource=repology depName=make packageName=debian_12/make
 ARG DEBIAN_MAKE_VERSION=4.3-4.1
+# renovate: datasource=repology depName=build-essential packageName=debian_12/build-essential
 ARG DEBIAN_BUILD_ESSENTIAL_VERSION=12.9
+# renovate: datasource=repology depName=libxcb1-dev packageName=debian_12/libxcb1-dev
 ARG DEBIAN_LIBXCB1_DEV_VERSION=1.15-1
+# renovate: datasource=repology depName=libxcb-render0-dev packageName=debian_12/libxcb-render0-dev
 ARG DEBIAN_LIBXCB_RENDER0_DEV_VERSION=1.15-1
+# renovate: datasource=repology depName=libxcb-shape0-dev packageName=debian_12/libxcb-shape0-dev
 ARG DEBIAN_LIBXCB_SHAPE0_DEV_VERSION=1.15-1
+# renovate: datasource=repology depName=libxcb-xfixes0-dev packageName=debian_12/libxcb-xfixes0-dev
 ARG DEBIAN_LIBXCB_XFIXES0_DEV_VERSION=1.15-1
+# renovate: datasource=repology depName=bash packageName=debian_12/bash
 ARG DEBIAN_BASH_VERSION=5.2.15-2+b9
+# renovate: datasource=repology depName=zsh packageName=debian_12/zsh
 ARG DEBIAN_ZSH_VERSION=5.9-4+b7
+# renovate: datasource=repology depName=gnupg packageName=debian_12/gnupg
 ARG DEBIAN_GNUPG_VERSION=2.2.40-1.1+deb12u1
+# renovate: datasource=repology depName=ca-certificates packageName=debian_12/ca-certificates
 ARG DEBIAN_CA_CERTIFICATES_VERSION=20230311+deb12u1
+# renovate: datasource=repology depName=curl packageName=debian_12/curl
 ARG DEBIAN_CURL_VERSION=7.88.1-10+deb12u14
+# renovate: datasource=repology depName=wget packageName=debian_12/wget
 ARG DEBIAN_WGET_VERSION=1.21.3-1+deb12u1
+# renovate: datasource=repology depName=git packageName=debian_12/git
 ARG DEBIAN_GIT_VERSION=1:2.39.5-0+deb12u2
+# renovate: datasource=repology depName=tree packageName=debian_12/tree
 ARG DEBIAN_TREE_VERSION=2.1.0-1
+# renovate: datasource=repology depName=nano packageName=debian_12/nano
 ARG DEBIAN_NANO_VERSION=7.2-1+deb12u1
+# renovate: datasource=repology depName=less packageName=debian_12/less
 ARG DEBIAN_LESS_VERSION=590-2.1~deb12u2
+# renovate: datasource=repology depName=zip packageName=debian_12/zip
 ARG DEBIAN_ZIP_VERSION=3.0-13
+# renovate: datasource=repology depName=gzip packageName=debian_12/gzip
 ARG DEBIAN_GZIP_VERSION=1.12-1
+# renovate: datasource=repology depName=unzip packageName=debian_12/unzip
 ARG DEBIAN_UNZIP_VERSION=6.0-28
+# renovate: datasource=repology depName=tar packageName=debian_12/tar
 ARG DEBIAN_TAR_VERSION=1.34+dfsg-1.2+deb12u1
+# renovate: datasource=repology depName=xz-utils packageName=debian_12/xz-utils
 ARG DEBIAN_XZ_UTILS_VERSION=5.4.1-1
+# renovate: datasource=repology depName=locales-all packageName=debian_12/locales-all
 ARG DEBIAN_LOCALES_ALL_VERSION=2.36-9+deb12u13
+# renovate: datasource=repology depName=procps packageName=debian_12/procps
 ARG DEBIAN_PROCPS_VERSION=2:4.0.2-3
+# renovate: datasource=repology depName=sudo packageName=debian_12/sudo
 ARG DEBIAN_SUDO_VERSION=1.9.13p3-1+deb12u2
+# renovate: datasource=repology depName=fzf packageName=debian_12/fzf
 ARG DEBIAN_FZF_VERSION=0.38.0-1+b1
+# renovate: datasource=repology depName=man-db packageName=debian_12/man-db
 ARG DEBIAN_MAN_DB_VERSION=2.11.2-2
+# renovate: datasource=repology depName=gnupg2 packageName=debian_12/gnupg2
 ARG DEBIAN_GNUPG2_VERSION=2.2.40-1.1+deb12u1
+# renovate: datasource=repology depName=gh packageName=debian_12/gh
 ARG DEBIAN_GH_VERSION=2.23.0+dfsg1-1
+# renovate: datasource=repology depName=iptables packageName=debian_12/iptables
 ARG DEBIAN_IPTABLES_VERSION=1.8.9-2
+# renovate: datasource=repology depName=ipset packageName=debian_12/ipset
 ARG DEBIAN_IPSET_VERSION=7.17-1
+# renovate: datasource=repology depName=iproute2 packageName=debian_12/iproute2
 ARG DEBIAN_IPROUTE2_VERSION=6.1.0-3
-# ARG DEBIAN_DNSUTILS_VERSION=1:9.18.33-1~deb12u2
+# renovate: datasource=repology depName=bind9-dnsutils packageName=debian_12/bind9-dnsutils
 ARG DEBIAN_BIND9_DNSUTILS_VERSION=1:9.18.33-1~deb12u2
+# renovate: datasource=repology depName=aggregate packageName=debian_12/aggregate
 ARG DEBIAN_AGGREGATE_VERSION=1.6-7+b1
+# renovate: datasource=repology depName=expat packageName=debian_12/expat
 ARG DEBIAN_EXPAT_VERSION=2.5.0-1+deb12u2
+# renovate: datasource=repology depName=libpq-dev packageName=debian_12/libpq-dev
 ARG DEBIAN_LIBPQ_DEV_VERSION=15.14-0+deb12u1
 
 # for go tools
+# renovate: datasource=github-tags depName=dockerfmt packageName=reteps/dockerfmt
 ARG GO_DOCKERFMT_VERSION=v0.3.7
+# renovate: datasource=github-tags depName=shfmt packageName=mvdan/sh
 ARG GO_SHFMT_VERSION=v3.12.0
+# renovate: datasource=github-tags depName=go-task packageName=go-task/task
 ARG GO_GO_TASK_VERSION=v3.45.4
+# renovate: datasource=github-tags depName=curlie packageName=rs/curlie
 ARG GO_CURLIE_VERSION=v1.8.2
+# renovate: datasource=github-tags depName=usql packageName=xo/usql
 ARG GO_USQL_VERSION=v0.19.25
 
 # for cargo tools
+# renovate: datasource=crate depName=eza packageName=eza
 ARG CARGO_EZA_VERSION=0.23.3
+# renovate: datasource=crate depName=tokei packageName=tokei
 ARG CARGO_TOKEI_VERSION=12.1.2
+# renovate: datasource=crate depName=git-delta packageName=git-delta
 ARG CARGO_DELTA_VERSION=0.18.2
+# renovate: datasource=crate depName=fd-find packageName=fd-find
 ARG CARGO_FD_VERSION=10.3.0
+# renovate: datasource=crate depName=bat packageName=bat
 ARG CARGO_BAT_VERSION=0.25.0
+# renovate: datasource=crate depName=lsd packageName=lsd
 ARG CARGO_LSD_VERSION=1.1.5
+# renovate: datasource=crate depName=broot packageName=broot
 ARG CARGO_BROOT_VERSION=1.49.1
 
 # for npm tools
+# renovate: datasource=npm depName=npm packageName=npm
 ARG NPM_NPM_VERSION=11.6.0
+# renovate: datasource=npm depName=prettier packageName=prettier
 ARG NPM_PRETTIER_VERSION=3.6.2
+# renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.15.0
+# renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
 ARG NPM_CLAUDE_CODE_VERSION=1.0.120
+# renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.0.2
+# renovate: datasource=npm depName=repomix packageName=repomix
 ARG NPM_REPOMIX_VERSION=1.6.0
+# renovate: datasource=npm depName=openai-codex packageName=@openai/codex
 ARG NPM_OPENAI_CODEX_VERSION=0.39.0
 
 # for pip tools
+# renovate: datasource=pypi depName=pip packageName=pip
 ARG PIP_PIP_VERSION=25.2
+# renovate: datasource=pypi depName=pipx packageName=pipx
 ARG PIP_PIPX_VERSION=1.7.1
+# renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
+# renovate: datasource=pypi depName=uv packageName=uv
 ARG PIP_UV_VERSION=0.8.19
+# renovate: datasource=pypi depName=ruff packageName=ruff
 ARG PIP_RUFF_VERSION=0.13.1
+# renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
+# renovate: datasource=pypi depName=pgcli packageName=pgcli
 ARG PIP_PGCLI_VERSION=4.3.0
+# renovate: datasource=pypi depName=gitingest packageName=gitingest
 ARG PIP_GITINGEST_VERSION=0.3.1
 
 # for other tools (github-tags)
+# renovate: datasource=github-releases depName=jq packageName=jqlang/jq
 ARG OTHER_JQ_VERSION=1.8.0
+# renovate: datasource=github-releases depName=yq packageName=mikefarah/yq
 ARG OTHER_YQ_VERSION=4.47.2
+# renovate: datasource=github-releases depName=xq packageName=sibprogrammer/xq
 ARG OTHER_XQ_VERSION=1.3.0
+# renovate: datasource=github-releases depName=taplo packageName=tamasfe/taplo
 ARG OTHER_TAPLO_VERSION=0.10.0
+# renovate: datasource=github-releases depName=shellcheck packageName=koalaman/shellcheck
 ARG OTHER_SHELLCHECK_VERSION=v0.11.0
+# renovate: datasource=github-releases depName=ripgrep packageName=BurntSushi/ripgrep
 ARG OTHER_RIPGREP_VERSION=14.1.1
+# renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION=v2.13.1
+# renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
 ARG OTHER_GITLEAKS_VERSION=8.28.0
+# renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
 ARG OTHER_FZF_VERSION=0.65.2
 
 # ##########################################################################################
