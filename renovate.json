@@ -34,7 +34,8 @@
       "description": "Separate devcontainers/base updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
       "matchPackageNames": ["ghcr.io/aazw/devcontainers/base"],
-      "groupName": "{{parentDir}}: devcontainers/base"
+      "groupName": "{{parentDir}}: devcontainers/base",
+      "versioning": "regex:^(?<major>\\d+)$"
     },
     {
       "description": "Group base images - major updates by image directory",

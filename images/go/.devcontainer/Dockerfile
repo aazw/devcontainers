@@ -11,7 +11,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 # renovate: datasource=docker depName=golang packageName=golang versioning=docker
 ARG DOCKER_GOLANG_VERSION=1.25.1
 
-# renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base versioning=regex:^(?<major>\d+)$
+# renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
 ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=4
 
 # golang
