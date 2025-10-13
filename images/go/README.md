@@ -3,10 +3,10 @@
 ## Build
 
 ```bash
-# run
+# 直接実行
 go run main.go 
 
-# build
+# コンパイルして実行可能ファイルを作成
 go build main.go 
 ```
 

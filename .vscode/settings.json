@@ -33,5 +33,9 @@
         "cmd": "taplo fmt \"${file}\""
       }
     ]
+  },
+  "editor.wordWrap": "off",
+  "[markdown]": {
+    "editor.wordWrap": "off"
   }
 }

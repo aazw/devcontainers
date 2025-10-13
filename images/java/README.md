@@ -3,7 +3,7 @@
 ## Build
 
 ```bash
-# run
+# 直接実行
 java HelloWorld.java
 
 # generate class file

@@ -3,6 +3,7 @@
 ## Build
 
 ```bash
+# コンパイルして実行可能ファイルを作成
 rustc main.rs 
 ```
 
