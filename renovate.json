@@ -35,8 +35,8 @@
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/aazw/devcontainers/base"],
-      "groupName": "{{parentDir}}: devcontainers/base",
-      "versioning": "regex:^(?<major>\\d+)$"
+      "versioning": "regex:^(?<major>\\d+)$",
+      "groupName": "devcontainers/base image: {{packageFile}}"
     },
     {
       "description": "Group docker images - major updates by image directory",
@@ -44,7 +44,7 @@
       "matchDatasources": ["docker"],
       "excludePackageNames": ["ghcr.io/aazw/devcontainers/base"],
       "matchUpdateTypes": ["major"],
-      "groupName": "{{parentDir}}: docker images (major)"
+      "groupName": "docker images (major) : {{packageFile}}"
     },
     {
       "description": "Group docker images - minor/patch updates by image directory",
@@ -52,7 +52,7 @@
       "matchDatasources": ["docker"],
       "excludePackageNames": ["ghcr.io/aazw/devcontainers/base"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "{{parentDir}}: docker images (minor/patch)"
+      "groupName": "docker images (minor/patch) : {{packageFile}}"
     },
     {
       "description": "Group packages - major updates by image directory",
@@ -67,7 +67,7 @@
         "github-tags"
       ],
       "matchUpdateTypes": ["major"],
-      "groupName": "{{packageFile}}: packages (major)"
+      "groupName": "packages (major) : {{packageFile}}"
     },
     {
       "description": "Group packages - minor/patch updates by image directory",
@@ -82,7 +82,7 @@
         "github-tags"
       ],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "{{packageFile}}: packages (minor/patch)"
+      "groupName": "packages (minor/patch) : {{packageFile}}"
     }
   ]
 }
