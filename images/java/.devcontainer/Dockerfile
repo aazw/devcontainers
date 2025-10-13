@@ -20,7 +20,7 @@ FROM mcr.microsoft.com/openjdk/jdk:${DOCKER_JAVA_VERSION} as runtime-build
 
 # Create a custom Java runtime
 RUN $JAVA_HOME/bin/jlink \
-    --add-modules java.base \
+    --add-modules ALL-MODULE-PATH \
     --strip-debug \
     --no-man-pages \
     --no-header-files \
