@@ -1,0 +1,18 @@
+{
+  "name": "vsc-devcontainers-go",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "initializeCommand": "./build.sh",
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+  },
+  "runArgs": [
+    "--name",
+    "vsc-devcontainers-go",
+    "--add-host",
+    "host.docker.internal:host-gateway"
+  ],
+  "postAttachCommand": "go version"
+}
