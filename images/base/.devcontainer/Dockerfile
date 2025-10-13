@@ -94,7 +94,7 @@ ARG DEBIAN_LIBPQ_DEV_VERSION=15.14-0+deb12u1
 
 # for go tools
 # renovate: datasource=github-tags depName=dockerfmt packageName=reteps/dockerfmt
-ARG GO_DOCKERFMT_VERSION=v0.3.7
+ARG GO_DOCKERFMT_VERSION=v0.3.8
 # renovate: datasource=github-tags depName=shfmt packageName=mvdan/sh
 ARG GO_SHFMT_VERSION=v3.12.0
 # renovate: datasource=github-tags depName=go-task packageName=go-task/task
@@ -102,7 +102,7 @@ ARG GO_GO_TASK_VERSION=v3.45.4
 # renovate: datasource=github-tags depName=curlie packageName=rs/curlie
 ARG GO_CURLIE_VERSION=v1.8.2
 # renovate: datasource=github-tags depName=usql packageName=xo/usql
-ARG GO_USQL_VERSION=v0.19.25
+ARG GO_USQL_VERSION=v0.19.26
 
 # for cargo tools
 # renovate: datasource=crate depName=eza packageName=eza
@@ -118,35 +118,35 @@ ARG CARGO_BAT_VERSION=0.25.0
 # renovate: datasource=crate depName=lsd packageName=lsd
 ARG CARGO_LSD_VERSION=1.1.5
 # renovate: datasource=crate depName=broot packageName=broot
-ARG CARGO_BROOT_VERSION=1.49.1
+ARG CARGO_BROOT_VERSION=1.51.0
 
 # for npm tools
 # renovate: datasource=npm depName=npm packageName=npm
-ARG NPM_NPM_VERSION=11.6.0
+ARG NPM_NPM_VERSION=11.6.1
 # renovate: datasource=npm depName=prettier packageName=prettier
 ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
-ARG NPM_RENOVATE_VERSION=41.15.0
+ARG NPM_RENOVATE_VERSION=41.135.5
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=1.0.120
+ARG NPM_CLAUDE_CODE_VERSION=1.0.128
 # renovate: datasource=npm depName=ccusage packageName=ccusage
-ARG NPM_CCUSAGE_VERSION=17.0.2
+ARG NPM_CCUSAGE_VERSION=17.1.2
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.6.0
+ARG NPM_REPOMIX_VERSION=1.6.1
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.39.0
+ARG NPM_OPENAI_CODEX_VERSION=0.44.0
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
 ARG PIP_PIP_VERSION=25.2
 # renovate: datasource=pypi depName=pipx packageName=pipx
-ARG PIP_PIPX_VERSION=1.7.1
+ARG PIP_PIPX_VERSION=1.8.0
 # renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.8.19
+ARG PIP_UV_VERSION=0.8.23
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.13.1
+ARG PIP_RUFF_VERSION=0.13.3
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
@@ -168,7 +168,7 @@ ARG OTHER_SHELLCHECK_VERSION=v0.11.0
 # renovate: datasource=github-releases depName=ripgrep packageName=BurntSushi/ripgrep
 ARG OTHER_RIPGREP_VERSION=14.1.1
 # renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
-ARG OTHER_HADOLINT_VERSION=v2.13.1
+ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
 ARG OTHER_GITLEAKS_VERSION=8.28.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
