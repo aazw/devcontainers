@@ -4,12 +4,14 @@
 
 | GHCR     | Source   | Node     | Python   | Go       | Rust     | Java     | Swift    |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| [devcontainers/base](/users/aazw/packages/container/package/devcontainers%2Fbase)   | [base](./images/base/)   | ✅️ | ✅️ | | | | |
+| [devcontainers/base](/aazw/devcontainers/pkgs/container/devcontainers%2Fbase   | [base](./images/base/)   | ✅️ | ✅️ | | | | |
 | | | | | | | |
-| [devcontainers/go](/users/aazw/packages/container/package/devcontainers%2Fgo)       | [go](./images/go/)       | ✅️ | ✅️ | ✅️ |    |    |    |
-| [devcontainers/rust](/users/aazw/packages/container/package/devcontainers%2Frust)   | [rust](./images/rust/)   | ✅️ | ✅️ |    | ✅️ |    |    |
-| [devcontainers/java](/users/aazw/packages/container/package/devcontainers%2Fjava)   | [java](./images/java/)   | ✅️ | ✅️ |    |    | ✅️ |    |
-| [devcontainers/swift](/users/aazw/packages/container/package/devcontainers%2Fswift) | [swift](./images/swift/) | ✅️ | ✅️ |    |    |    | ✅️ |
+| [devcontainers/go](/aazw/devcontainers/pkgs/container/devcontainers%2Fgo)       | [go](./images/go/)       | ✅️ | ✅️ | ✅️ |    |    |    |
+| [devcontainers/rust](/aazw/devcontainers/pkgs/container/devcontainers%2Frust)   | [rust](./images/rust/)   | ✅️ | ✅️ |    | ✅️ |    |    |
+| [devcontainers/java](/aazw/devcontainers/pkgs/container/devcontainers%2Fjava)   | [java](./images/java/)   | ✅️ | ✅️ |    |    | ✅️ |    |
+| [devcontainers/swift](/aazw/devcontainers/pkgs/container/devcontainers%2Fswift) | [swift](./images/swift/) | ✅️ | ✅️ |    |    |    | ✅️ |
+
+https://github.com/aazw/devcontainers/pkgs/container/devcontainers%2Fbase
 
 ## Dev Container
 
