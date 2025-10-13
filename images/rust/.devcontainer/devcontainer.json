@@ -1,5 +1,5 @@
 {
-  "name": "vsc-devcontainers-go",
+  "name": "vsc-devcontainers-rust",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -10,9 +10,9 @@
   },
   "runArgs": [
     "--name",
-    "vsc-devcontainers-go",
+    "vsc-devcontainers-rust",
     "--add-host",
     "host.docker.internal:host-gateway"
   ],
-  "postAttachCommand": "go version"
+  "postAttachCommand": "rustc --version"
 }

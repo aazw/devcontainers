@@ -30,6 +30,7 @@ FROM ghcr.io/aazw/devcontainers/base:${DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION}
 USER root
 
 # rust
+# https://aton-kish.github.io/blog/post/2020/11/05/multi-runtime-docker/
 ARG DEBIAN_LIBC6_DEV_VERSION
 ARG DEBIAN_GCC_VERSION
 RUN apt-get update -y \
@@ -45,3 +46,4 @@ RUN cargo --version \
     && rustup --version
 
 USER vscode
+ENV USER=vscode
