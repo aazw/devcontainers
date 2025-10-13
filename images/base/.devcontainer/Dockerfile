@@ -341,11 +341,6 @@ RUN apt-get update -y \
         locales-all=${DEBIAN_LOCALES_ALL_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 
-# golang
-# refs above
-COPY --from=golang-builder /usr/local/go /usr/local/go
-ENV PATH=/usr/local/go/bin/:$PATH
-
 # dockerfmt
 # refs above
 COPY --from=golang-builder /go/bin/dockerfmt /usr/local/bin/
