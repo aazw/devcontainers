@@ -33,39 +33,26 @@
     {
       "description": "Separate devcontainers/base updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/aazw/devcontainers/base"],
       "groupName": "{{parentDir}}: devcontainers/base",
       "versioning": "regex:^(?<major>\\d+)$"
     },
     {
-      "description": "Group base images - major updates by image directory",
+      "description": "Group docker images - major updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
-      "matchPackageNames": [
-        "deb",
-        "go",
-        "crate",
-        "npm",
-        "pypi",
-        "github-releases",
-        "github-tags"
-      ],
+      "matchDatasources": ["docker"],
+      "excludePackageNames": ["ghcr.io/aazw/devcontainers/base"],
       "matchUpdateTypes": ["major"],
-      "groupName": "{{parentDir}}: base images (major)"
+      "groupName": "{{parentDir}}: docker images (major)"
     },
     {
-      "description": "Group base images - minor/patch updates by image directory",
+      "description": "Group docker images - minor/patch updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
-      "matchPackageNames": [
-        "deb",
-        "go",
-        "crate",
-        "npm",
-        "pypi",
-        "github-releases",
-        "github-tags"
-      ],
+      "matchDatasources": ["docker"],
+      "excludePackageNames": ["ghcr.io/aazw/devcontainers/base"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "{{parentDir}}: base images (minor/patch)"
+      "groupName": "{{parentDir}}: docker images (minor/patch)"
     },
     {
       "description": "Group packages - major updates by image directory",
