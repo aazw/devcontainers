@@ -117,6 +117,13 @@
       },
       "commitMessageExtra": "(minor/patch)",
       "labels": ["{{packageFile}}", "packages (minor/patch)"]
+    },
+    {
+      "description": "Ignore renovate minor/patch updates itself",
+      "matchDatasources": ["npm"],
+      "matchPackageNames": ["renovate"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "enabled": false
     }
   ]
 }
