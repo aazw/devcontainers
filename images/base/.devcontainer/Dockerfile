@@ -21,75 +21,75 @@ ARG DOCKER_PYTHON_VERSION=3.13
 
 # for debian tools (apt-get)
 # * https://packages.debian.org/search?keywords=<package_name>
-# renovate: datasource=repology depName=make packageName=debian_12/make
+# renovate: datasource=deb depName=make packageName=make versioning=deb
 ARG DEBIAN_MAKE_VERSION=4.3-4.1
-# renovate: datasource=repology depName=build-essential packageName=debian_12/build-essential
+# renovate: datasource=deb depName=build-essential packageName=build-essential versioning=deb
 ARG DEBIAN_BUILD_ESSENTIAL_VERSION=12.9
-# renovate: datasource=repology depName=libxcb1-dev packageName=debian_12/libxcb1-dev
+# renovate: datasource=deb depName=libxcb1-dev packageName=libxcb1-dev versioning=deb
 ARG DEBIAN_LIBXCB1_DEV_VERSION=1.15-1
-# renovate: datasource=repology depName=libxcb-render0-dev packageName=debian_12/libxcb-render0-dev
+# renovate: datasource=deb depName=libxcb-render0-dev packageName=libxcb-render0-dev versioning=deb
 ARG DEBIAN_LIBXCB_RENDER0_DEV_VERSION=1.15-1
-# renovate: datasource=repology depName=libxcb-shape0-dev packageName=debian_12/libxcb-shape0-dev
+# renovate: datasource=deb depName=libxcb-shape0-dev packageName=libxcb-shape0-dev versioning=deb
 ARG DEBIAN_LIBXCB_SHAPE0_DEV_VERSION=1.15-1
-# renovate: datasource=repology depName=libxcb-xfixes0-dev packageName=debian_12/libxcb-xfixes0-dev
+# renovate: datasource=deb depName=libxcb-xfixes0-dev packageName=libxcb-xfixes0-dev versioning=deb
 ARG DEBIAN_LIBXCB_XFIXES0_DEV_VERSION=1.15-1
-# renovate: datasource=repology depName=bash packageName=debian_12/bash
+# renovate: datasource=deb depName=bash packageName=bash versioning=deb
 ARG DEBIAN_BASH_VERSION=5.2.15-2+b9
-# renovate: datasource=repology depName=zsh packageName=debian_12/zsh
+# renovate: datasource=deb depName=zsh packageName=zsh versioning=deb
 ARG DEBIAN_ZSH_VERSION=5.9-4+b7
-# renovate: datasource=repology depName=gnupg packageName=debian_12/gnupg
+# renovate: datasource=deb depName=gnupg packageName=gnupg versioning=deb
 ARG DEBIAN_GNUPG_VERSION=2.2.40-1.1+deb12u1
-# renovate: datasource=repology depName=ca-certificates packageName=debian_12/ca-certificates
+# renovate: datasource=deb depName=ca-certificates packageName=ca-certificates versioning=deb
 ARG DEBIAN_CA_CERTIFICATES_VERSION=20230311+deb12u1
-# renovate: datasource=repology depName=curl packageName=debian_12/curl
+# renovate: datasource=deb depName=curl packageName=curl versioning=deb
 ARG DEBIAN_CURL_VERSION=7.88.1-10+deb12u14
-# renovate: datasource=repology depName=wget packageName=debian_12/wget
+# renovate: datasource=deb depName=wget packageName=wget versioning=deb
 ARG DEBIAN_WGET_VERSION=1.21.3-1+deb12u1
-# renovate: datasource=repology depName=git packageName=debian_12/git
+# renovate: datasource=deb depName=git packageName=git versioning=deb
 ARG DEBIAN_GIT_VERSION=1:2.39.5-0+deb12u2
-# renovate: datasource=repology depName=tree packageName=debian_12/tree
+# renovate: datasource=deb depName=tree packageName=tree versioning=deb
 ARG DEBIAN_TREE_VERSION=2.1.0-1
-# renovate: datasource=repology depName=nano packageName=debian_12/nano
+# renovate: datasource=deb depName=nano packageName=nano versioning=deb
 ARG DEBIAN_NANO_VERSION=7.2-1+deb12u1
-# renovate: datasource=repology depName=less packageName=debian_12/less
+# renovate: datasource=deb depName=less packageName=less versioning=deb
 ARG DEBIAN_LESS_VERSION=590-2.1~deb12u2
-# renovate: datasource=repology depName=zip packageName=debian_12/zip
+# renovate: datasource=deb depName=zip packageName=zip versioning=deb
 ARG DEBIAN_ZIP_VERSION=3.0-13
-# renovate: datasource=repology depName=gzip packageName=debian_12/gzip
+# renovate: datasource=deb depName=gzip packageName=gzip versioning=deb
 ARG DEBIAN_GZIP_VERSION=1.12-1
-# renovate: datasource=repology depName=unzip packageName=debian_12/unzip
+# renovate: datasource=deb depName=unzip packageName=unzip versioning=deb
 ARG DEBIAN_UNZIP_VERSION=6.0-28
-# renovate: datasource=repology depName=tar packageName=debian_12/tar
+# renovate: datasource=deb depName=tar packageName=tar versioning=deb
 ARG DEBIAN_TAR_VERSION=1.34+dfsg-1.2+deb12u1
-# renovate: datasource=repology depName=xz-utils packageName=debian_12/xz-utils
+# renovate: datasource=deb depName=xz-utils packageName=xz-utils versioning=deb
 ARG DEBIAN_XZ_UTILS_VERSION=5.4.1-1
-# renovate: datasource=repology depName=locales-all packageName=debian_12/locales-all
+# renovate: datasource=deb depName=locales-all packageName=locales-all versioning=deb
 ARG DEBIAN_LOCALES_ALL_VERSION=2.36-9+deb12u13
-# renovate: datasource=repology depName=procps packageName=debian_12/procps
+# renovate: datasource=deb depName=procps packageName=procps versioning=deb
 ARG DEBIAN_PROCPS_VERSION=2:4.0.2-3
-# renovate: datasource=repology depName=sudo packageName=debian_12/sudo
+# renovate: datasource=deb depName=sudo packageName=sudo versioning=deb
 ARG DEBIAN_SUDO_VERSION=1.9.13p3-1+deb12u2
-# renovate: datasource=repology depName=fzf packageName=debian_12/fzf
+# renovate: datasource=deb depName=fzf packageName=fzf versioning=deb
 ARG DEBIAN_FZF_VERSION=0.38.0-1+b1
-# renovate: datasource=repology depName=man-db packageName=debian_12/man-db
+# renovate: datasource=deb depName=man-db packageName=man-db versioning=deb
 ARG DEBIAN_MAN_DB_VERSION=2.11.2-2
-# renovate: datasource=repology depName=gnupg2 packageName=debian_12/gnupg2
+# renovate: datasource=deb depName=gnupg2 packageName=gnupg2 versioning=deb
 ARG DEBIAN_GNUPG2_VERSION=2.2.40-1.1+deb12u1
-# renovate: datasource=repology depName=gh packageName=debian_12/gh
+# renovate: datasource=deb depName=gh packageName=gh versioning=deb
 ARG DEBIAN_GH_VERSION=2.23.0+dfsg1-1
-# renovate: datasource=repology depName=iptables packageName=debian_12/iptables
+# renovate: datasource=deb depName=iptables packageName=iptables versioning=deb
 ARG DEBIAN_IPTABLES_VERSION=1.8.9-2
-# renovate: datasource=repology depName=ipset packageName=debian_12/ipset
+# renovate: datasource=deb depName=ipset packageName=ipset versioning=deb
 ARG DEBIAN_IPSET_VERSION=7.17-1
-# renovate: datasource=repology depName=iproute2 packageName=debian_12/iproute2
+# renovate: datasource=deb depName=iproute2 packageName=iproute2 versioning=deb
 ARG DEBIAN_IPROUTE2_VERSION=6.1.0-3
-# renovate: datasource=repology depName=bind9-dnsutils packageName=debian_12/bind9-dnsutils
+# renovate: datasource=deb depName=bind9-dnsutils packageName=bind9-dnsutils versioning=deb
 ARG DEBIAN_BIND9_DNSUTILS_VERSION=1:9.18.33-1~deb12u2
-# renovate: datasource=repology depName=aggregate packageName=debian_12/aggregate
+# renovate: datasource=deb depName=aggregate packageName=aggregate versioning=deb
 ARG DEBIAN_AGGREGATE_VERSION=1.6-7+b1
-# renovate: datasource=repology depName=expat packageName=debian_12/expat
+# renovate: datasource=deb depName=expat packageName=expat versioning=deb
 ARG DEBIAN_EXPAT_VERSION=2.5.0-1+deb12u2
-# renovate: datasource=repology depName=libpq-dev packageName=debian_12/libpq-dev
+# renovate: datasource=deb depName=libpq-dev packageName=libpq-dev versioning=deb
 ARG DEBIAN_LIBPQ_DEV_VERSION=15.14-0+deb12u1
 
 # for go tools
