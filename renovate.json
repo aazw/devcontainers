@@ -67,7 +67,7 @@
         "github-tags"
       ],
       "matchUpdateTypes": ["major"],
-      "groupName": "{{parentDir}}: packages (major)"
+      "groupName": "{{packageFile}}: packages (major)"
     },
     {
       "description": "Group packages - minor/patch updates by image directory",
@@ -82,7 +82,7 @@
         "github-tags"
       ],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "{{parentDir}}: packages (minor/patch)"
+      "groupName": "{{packageFile}}: packages (minor/patch)"
     }
   ]
 }
