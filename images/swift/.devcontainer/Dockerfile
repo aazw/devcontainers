@@ -37,7 +37,7 @@ ARG DEBIAN_LIBSQLITE3_0_VERSION=3.40.1-2+deb12u2
 # renovate: datasource=deb depName=libz3-4 packageName=libz3-4 versioning=deb
 ARG DEBIAN_LIBZ3_4_VERSION=4.8.12-3.1
 # renovate: datasource=deb depName=clang packageName=clang versioning=deb
-ARG DEBIAN_CLANG_VERSION=1:14.0-55.7~deb12u1:
+ARG DEBIAN_CLANG_VERSION=1:14.0-55.7~deb12u1
 
 # swift
 # https://hub.docker.com/_/swift
