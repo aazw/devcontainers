@@ -47,7 +47,8 @@
         "crate",
         "npm",
         "pypi",
-        "github-releases"
+        "github-releases",
+        "deb"
       ],
       "matchUpdateTypes": ["major"],
       "groupName": "{{parentDir}}: packages (major)"
@@ -61,7 +62,8 @@
         "crate",
         "npm",
         "pypi",
-        "github-releases"
+        "github-releases",
+        "deb"
       ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "{{parentDir}}: packages (minor/patch)"
