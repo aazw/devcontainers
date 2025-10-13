@@ -16,9 +16,9 @@ ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=4
 
 # for debian tools (apt-get)
 # https://packages.debian.org/search?keywords=search
-# renovate: datasource=deb depName=libc6-dev packageName=libc6-dev versioning=deb distro=bookworm
+# renovate: datasource=deb depName=libc6-dev packageName=libc6-dev versioning=deb
 ARG DEBIAN_LIBC6_DEV_VERSION=2.36-9+deb12u10
-# renovate: datasource=deb depName=gcc packageName=gcc versioning=deb distro=bookworm
+# renovate: datasource=deb depName=gcc packageName=gcc versioning=deb
 ARG DEBIAN_GCC_VERSION=4:12.2.0-3
 
 # rust

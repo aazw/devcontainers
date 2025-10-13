@@ -39,14 +39,30 @@
     {
       "description": "Group base images - major updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
-      "matchPackageNames": ["golang", "rust", "node", "python"],
+      "matchPackageNames": [
+        "deb",
+        "go",
+        "crate",
+        "npm",
+        "pypi",
+        "github-releases",
+        "github-tags"
+      ],
       "matchUpdateTypes": ["major"],
       "groupName": "{{parentDir}}: base images (major)"
     },
     {
       "description": "Group base images - minor/patch updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
-      "matchPackageNames": ["golang", "rust", "node", "python"],
+      "matchPackageNames": [
+        "deb",
+        "go",
+        "crate",
+        "npm",
+        "pypi",
+        "github-releases",
+        "github-tags"
+      ],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "{{parentDir}}: base images (minor/patch)"
     },
@@ -54,6 +70,7 @@
       "description": "Group packages - major updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
       "matchDatasources": [
+        "deb",
         "go",
         "crate",
         "npm",
@@ -68,6 +85,7 @@
       "description": "Group packages - minor/patch updates by image directory",
       "matchPaths": ["**/images/*/.devcontainer/Dockerfile"],
       "matchDatasources": [
+        "deb",
         "go",
         "crate",
         "npm",
