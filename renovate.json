@@ -39,7 +39,9 @@
       "groupName": "devcontainers-base-{{packageFile}}",
       "commitMessagePrefix": "[{{packageFile}}] ",
       "commitMessageAction": "Update",
-      "commitMessageTopic": "devcontainers/base image",
+      "group": {
+        "commitMessageTopic": "devcontainers/base image"
+      },
       "labels": ["{{packageFile}}", "devcontainers/base"]
     },
     {
@@ -51,7 +53,9 @@
       "groupName": "docker-images-major-{{packageFile}}",
       "commitMessagePrefix": "[{{packageFile}}] ",
       "commitMessageAction": "Update",
-      "commitMessageTopic": "docker images",
+      "group": {
+        "commitMessageTopic": "docker images"
+      },
       "commitMessageExtra": "(major)",
       "labels": ["{{packageFile}}", "docker images (major)"]
     },
@@ -64,7 +68,9 @@
       "groupName": "docker-images-minor-patch-{{packageFile}}",
       "commitMessagePrefix": "[{{packageFile}}] ",
       "commitMessageAction": "Update",
-      "commitMessageTopic": "docker images",
+      "group": {
+        "commitMessageTopic": "docker images"
+      },
       "commitMessageExtra": "(minor/patch)",
       "labels": ["{{packageFile}}", "docker images (minor/patch)"]
     },
@@ -84,7 +90,9 @@
       "groupName": "packages-major-{{packageFile}}",
       "commitMessagePrefix": "[{{packageFile}}] ",
       "commitMessageAction": "Update",
-      "commitMessageTopic": "packages",
+      "group": {
+        "commitMessageTopic": "packages"
+      },
       "commitMessageExtra": "(major)",
       "labels": ["{{packageFile}}", "packages (major)"]
     },
@@ -104,7 +112,9 @@
       "groupName": "packages-minor-patch-{{packageFile}}",
       "commitMessagePrefix": "[{{packageFile}}] ",
       "commitMessageAction": "Update",
-      "commitMessageTopic": "packages",
+      "group": {
+        "commitMessageTopic": "packages"
+      },
       "commitMessageExtra": "(minor/patch)",
       "labels": ["{{packageFile}}", "packages (minor/patch)"]
     }
