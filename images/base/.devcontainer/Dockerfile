@@ -7,7 +7,7 @@
 
 # for main image
 # renovate: datasource=docker depName=debian packageName=debian versioning=docker
-ARG DOCKER_DEBIAN_VERSION=bookworm
+ARG DOCKER_DEBIAN_VERSION=trixie
 
 # for builder images
 # renovate: datasource=docker depName=golang packageName=golang versioning=docker
