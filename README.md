@@ -4,7 +4,7 @@
 
 | GHCR     | Source   | Node     | Python   | Go       | Rust     | Java     | Swift    |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-| [devcontainers/base](/aazw/devcontainers/pkgs/container/devcontainers%2Fbase)   | [base](./images/base/)   | ✅️ | ✅️ | | | | |
+| [devcontainers/base](https://github.com/aazw/devcontainers/pkgs/container/devcontainers%2Fbase)   | [base](./images/base/)   | ✅️ | ✅️ | | | | |
 | | | | | | | |
 | [devcontainers/go](https://github.com/aazw/devcontainers/pkgs/container/devcontainers%2Fgo)       | [go](./images/go/)       | ✅️ | ✅️ | ✅️ |    |    |    |
 | [devcontainers/rust](https://github.com/aazw/devcontainers/pkgs/container/devcontainers%2Frust)   | [rust](./images/rust/)   | ✅️ | ✅️ |    | ✅️ |    |    |
