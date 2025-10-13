@@ -17,7 +17,7 @@ ARG DOCKER_RUST_VERSION=1.90.0
 # renovate: datasource=docker depName=node packageName=node versioning=docker
 ARG DOCKER_NODE_VERSION=22.19.0
 # renovate: datasource=docker depName=python packageName=python versioning=docker
-ARG DOCKER_PYTHON_VERSION=3.13
+ARG DOCKER_PYTHON_VERSION=3.14
 
 # for debian tools (apt-get)
 # * https://packages.debian.org/search?keywords=<package_name>
