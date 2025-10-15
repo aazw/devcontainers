@@ -14,11 +14,11 @@ jobs:
     strategy:
       matrix:
         package:
-          - devcontainers/base
-          - devcontainers/go
-          - devcontainers/rust
-          - devcontainers/java
-          - devcontainers/swift
+          - base
+          - go
+          - rust
+          - java
+          - swift
       fail-fast: false
 
     steps:
