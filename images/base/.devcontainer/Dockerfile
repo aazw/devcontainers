@@ -105,6 +105,8 @@ ARG GO_CURLIE_VERSION=v1.8.2
 ARG GO_USQL_VERSION=v0.19.26
 
 # for cargo tools
+# renovate: datasource=crate depName=cargo-binstall packageName=cargo-binstall
+ARG CARGO_BINSTALL_VERSION=1.15.7
 # renovate: datasource=crate depName=eza packageName=eza
 ARG CARGO_EZA_VERSION=0.23.3
 # renovate: datasource=crate depName=tokei packageName=tokei
@@ -217,24 +219,39 @@ RUN go install -tags most github.com/xo/usql@${GO_USQL_VERSION} \
 # https://hub.docker.com/_/rust
 FROM rust:${DOCKER_RUST_VERSION}-${DOCKER_DEBIAN_VERSION} AS rust-builder
 
+
+# binstall
+# https://github.com/cargo-bins/cargo-binstall
+ARG CARGO_BINSTALL_VERSION
+RUN ARCH=$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/') \
+    && mkdir -p /binstall \
+    && cd /binstall \
+    && curl -fsSL -o binstall.tgz https://github.com/cargo-bins/cargo-binstall/releases/v${CARGO_BINSTALL_VERSION}/download/cargo-binstall-${ARCH}-unknown-linux-musl.tgz \
+    && tar -xzf binstall.tgz \
+    && chmod +x ./cargo-binstall \
+    && mv cargo-binstall /usr/local/bin/ \
+    && rm -rf /binstall \
+    && cd / \
+    && cargo binstall --help
+
 # eza
 # https://github.com/eza-community/eza
 # https://github.com/eza-community/eza/blob/main/INSTALL.md
 ARG CARGO_EZA_VERSION
-RUN cargo install eza@${CARGO_EZA_VERSION} \
+RUN cargo binstall -y eza@${CARGO_EZA_VERSION} \
     && eza --version
 
 # tokei
 # https://github.com/XAMPPRocky/tokei
 ARG CARGO_TOKEI_VERSION
-RUN cargo install tokei@${CARGO_TOKEI_VERSION} \
+RUN cargo binstall -y tokei@${CARGO_TOKEI_VERSION} \
     && tokei --version
 
 # delta
 # https://github.com/dandavison/delta
 # https://dandavison.github.io/delta/installation.html
 ARG CARGO_DELTA_VERSION
-RUN cargo install git-delta@${CARGO_DELTA_VERSION} \
+RUN cargo binstall -y git-delta@${CARGO_DELTA_VERSION} \
     && delta --version
 
 # fd
@@ -245,19 +262,19 @@ RUN apt-get update -y \
         make=${DEBIAN_MAKE_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 ARG CARGO_FD_VERSION
-RUN cargo install fd-find@${CARGO_FD_VERSION} \
+RUN cargo binstall -y fd-find@${CARGO_FD_VERSION} \
     && fd --version
 
 # bat
 # https://github.com/sharkdp/bat
 ARG CARGO_BAT_VERSION
-RUN cargo install bat@${CARGO_BAT_VERSION} \
+RUN cargo binstall -y bat@${CARGO_BAT_VERSION} \
     && bat --version
 
 # lsd
 # https://github.com/lsd-rs/lsd
 ARG CARGO_LSD_VERSION
-RUN cargo install lsd@${CARGO_LSD_VERSION} \
+RUN cargo binstall -y lsd@${CARGO_LSD_VERSION} \
     && lsd --version
 
 # broot
@@ -277,7 +294,7 @@ RUN apt-get update -y \
         libxcb-xfixes0-dev=${DEBIAN_LIBXCB_SHAPE0_DEV_VERSION} \
     && rm -rf /var/lib/apt/lists/*
 ARG CARGO_BROOT_VERSION
-RUN cargo install broot@${CARGO_BROOT_VERSION} \
+RUN cargo binstall -y broot@${CARGO_BROOT_VERSION} \
     && broot --version
 
 # node
