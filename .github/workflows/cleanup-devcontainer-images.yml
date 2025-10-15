@@ -1,0 +1,55 @@
+name: Cleanup devcontainer images
+
+on:
+  schedule:
+    - cron: "0 3 * * 0" # 毎週日曜日
+  workflow_dispatch:
+
+jobs:
+  get-packages:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    outputs:
+      packages: ${{ steps.get-packages.outputs.packages }}
+
+    steps:
+      - name: Get all devcontainers packages
+        id: get-packages
+        run: |
+          PACKAGES=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/${{ github.repository_owner }}/packages?package_type=container" \
+            | jq -r '[.[] | select(.name | startswith("devcontainers/")) | .name | sub("devcontainers/"; "")] | @json')
+
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+          echo "Found packages: $PACKAGES"
+
+  cleanup:
+    needs: get-packages
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.get-packages.outputs.packages) }}
+      fail-fast: false
+
+    steps:
+      - name: Delete old untagged versions of ${{ matrix.package }}
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: devcontainers/${{ matrix.package }}
+          package-type: "container"
+          min-versions-to-keep: 0 # タグなしは全削除
+          delete-only-untagged-versions: "true"
+        continue-on-error: true
+
+      - name: Keep latest 3 tagged versions of ${{ matrix.package }}
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: devcontainers/${{ matrix.package }}
+          package-type: "container"
+          min-versions-to-keep: 3 # タグ付きは最新3つ保持
+        continue-on-error: true
