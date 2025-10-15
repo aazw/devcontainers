@@ -226,13 +226,13 @@ ARG CARGO_BINSTALL_VERSION
 RUN ARCH=$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/') \
     && mkdir -p /binstall \
     && cd /binstall \
-    && curl -fsSL -o binstall.tgz https://github.com/cargo-bins/cargo-binstall/releases/v${CARGO_BINSTALL_VERSION}/download/cargo-binstall-${ARCH}-unknown-linux-musl.tgz \
+    && curl -fsSL -o binstall.tgz "https://github.com/cargo-bins/cargo-binstall/releases/download/v${CARGO_BINSTALL_VERSION}/cargo-binstall-${ARCH}-unknown-linux-musl.tgz" \
     && tar -xzf binstall.tgz \
     && chmod +x ./cargo-binstall \
     && mv cargo-binstall /usr/local/bin/ \
     && rm -rf /binstall \
     && cd / \
-    && cargo binstall --help
+    && cargo binstall -V
 
 # eza
 # https://github.com/eza-community/eza
