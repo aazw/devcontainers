@@ -120,5 +120,6 @@ jobs:
             ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          pull: true
           provenance: false
           sbom: false
