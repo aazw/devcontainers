@@ -55,6 +55,22 @@ jobs:
           echo "context=$CONTEXT" >> "$GITHUB_OUTPUT"
           echo "image=$IMAGE_NAME" >> "$GITHUB_OUTPUT"
 
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf /usr/local/graalvm
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /usr/local/share/powershell
+          sudo rm -rf /usr/local/share/chromium
+          sudo rm -rf /usr/local/lib/node_modules
+          sudo docker system prune -af --volumes
+          sudo apt-get clean
+          df -h
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -81,3 +97,5 @@ jobs:
             ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          provenance: false
+          sbom: false
