@@ -11,7 +11,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # for builder images
 # renovate: datasource=docker depName=golang packageName=golang versioning=docker
-ARG DOCKER_GOLANG_VERSION=1.25.1
+ARG DOCKER_GOLANG_VERSION=1.25.2
 # renovate: datasource=docker depName=rust packageName=rust versioning=docker
 ARG DOCKER_RUST_VERSION=1.90.0
 # renovate: datasource=docker depName=node packageName=node versioning=docker
