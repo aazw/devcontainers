@@ -62,6 +62,9 @@ jobs:
     needs: detect-changes
     if: needs.detect-changes.outputs.changed_files != '[]' && needs.detect-changes.outputs.changed_files != ''
     runs-on: ubuntu-latest
+    concurrency:
+      group: build-devcontainer-${{ matrix.dockerfile }}
+      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
@@ -107,6 +110,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Compute next numeric tag per image
+        id: next
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          IMAGE_NAME="${{ steps.prep.outputs.image }}"
+          PKG="devcontainers/${IMAGE_NAME}"
+          PKG_ENC="${PKG//\//%2F}"
+          OWNER="${{ github.repository_owner }}"
+
+          # 最新100件を取得（デフォルトで新しい順）
+          VERS="$(gh api "/users/${OWNER}/packages/container/${PKG_ENC}/versions?per_page=100" || echo '[]')"
+
+          # 既存の数値タグの最大値+1を計算
+          NEXT="$(printf '%s' "${VERS}" | jq -r '[.[].metadata.container.tags[]? | select(test("^[0-9]+$")) | tonumber] | (max? // 0) + 1')"
+
+          echo "value=${NEXT}" >> "$GITHUB_OUTPUT"
+
       - name: Build & push ${{ steps.prep.outputs.image }}
         uses: docker/build-push-action@v6
         with:
@@ -116,7 +139,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.sha }}
-            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.run_number }}
+            ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ steps.next.outputs.value }}
             ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
