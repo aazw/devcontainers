@@ -21,6 +21,14 @@ on:
           # 他のイメージ名を随時追加
         default: "all"
 
+run-name: |
+  ${{ 
+    github.event_name == 'pull_request' && format('🔀 PR #{0} - {1}', github.event.pull_request.number, github.event.pull_request.title) ||
+    github.event_name == 'push' && format('📦 Push by @{0} - {1}', github.actor, github.event.head_commit.message) ||
+    github.event_name == 'workflow_dispatch' && format('🖱️ Manual run by @{0}', github.actor) ||
+    format('❓ {0} by @{1}', github.event_name, github.actor)
+  }}
+
 permissions:
   contents: read
   packages: write
