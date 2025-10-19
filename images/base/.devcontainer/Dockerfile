@@ -130,7 +130,7 @@ ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.135.7
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=1.0.128
+ARG NPM_CLAUDE_CODE_VERSION=2.0.14
 # renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.1.3
 # renovate: datasource=npm depName=repomix packageName=repomix
