@@ -236,12 +236,6 @@ jobs:
           provenance: false
           sbom: false
 
-      - name: Check image size
-        id: image_size
-        run: |
-          SIZE=$(docker image inspect ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest --format='{{.Size}}' | awk '{printf "%.2f MB", $1/1024/1024}')
-          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
-
       # ✅ ビルド後のサマリー（成功時のみ表示）
       - name: Add build results to summary
         run: |
@@ -255,7 +249,6 @@ jobs:
           echo "| Image Name | \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Digest | \`${{ steps.docker_build.outputs.digest }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Platforms | \`linux/amd64, linux/arm64\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Image Size | \`${{ steps.image_size.outputs.size }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Build Completed | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
