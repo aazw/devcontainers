@@ -124,7 +124,7 @@ ARG CARGO_BROOT_VERSION=1.51.0
 
 # for npm tools
 # renovate: datasource=npm depName=npm packageName=npm
-ARG NPM_NPM_VERSION=11.6.1
+ARG NPM_NPM_VERSION=11.6.2
 # renovate: datasource=npm depName=prettier packageName=prettier
 ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
@@ -134,9 +134,9 @@ ARG NPM_CLAUDE_CODE_VERSION=2.0.14
 # renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.1.3
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.6.1
+ARG NPM_REPOMIX_VERSION=1.7.0
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.45.0
+ARG NPM_OPENAI_CODEX_VERSION=0.46.0
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
@@ -146,9 +146,9 @@ ARG PIP_PIPX_VERSION=1.8.0
 # renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.8.24
+ARG PIP_UV_VERSION=0.9.2
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.13.3
+ARG PIP_RUFF_VERSION=0.14.0
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
@@ -160,7 +160,7 @@ ARG PIP_GITINGEST_VERSION=0.3.1
 # renovate: datasource=github-releases depName=jq packageName=jqlang/jq
 ARG OTHER_JQ_VERSION=1.8.0
 # renovate: datasource=github-releases depName=yq packageName=mikefarah/yq
-ARG OTHER_YQ_VERSION=4.47.2
+ARG OTHER_YQ_VERSION=4.48.1
 # renovate: datasource=github-releases depName=xq packageName=sibprogrammer/xq
 ARG OTHER_XQ_VERSION=1.3.0
 # renovate: datasource=github-releases depName=taplo packageName=tamasfe/taplo
@@ -174,7 +174,7 @@ ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
 ARG OTHER_GITLEAKS_VERSION=8.28.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
-ARG OTHER_FZF_VERSION=0.65.2
+ARG OTHER_FZF_VERSION=0.66.0
 
 # ##########################################################################################
 # builder images
