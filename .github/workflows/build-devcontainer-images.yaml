@@ -80,6 +80,26 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # Push イベントの場合、PR情報を取得
+      - name: Find associated PR
+        id: find-pr
+        if: github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commit = context.sha;
+            const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: commit
+            });
+
+            if (prs.length > 0) {
+              core.setOutput('pr_number', prs[0].number);
+              core.setOutput('pr_title', prs[0].title);
+              core.setOutput('pr_author', prs[0].user.login);
+            }
+
       - name: Derive build context and image name
         id: prep
         run: |
@@ -138,7 +158,68 @@ jobs:
 
           echo "value=${NEXT}" >> "$GITHUB_OUTPUT"
 
+        # 🎯 ビルド前のサマリー（エラー時でも見える情報）
+      - name: Create pre-build summary
+        run: |
+          echo "# 🚀 Build Started: ${{ steps.prep.outputs.image }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # ビルド対象情報
+          echo "## 🐳 Build Target" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Image Name | \`${{ steps.prep.outputs.image }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Dockerfile | \`${{ matrix.dockerfile }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Context | \`${{ steps.prep.outputs.context }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Next Tag | \`${{ steps.next.outputs.value }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # トリガー情報
+          echo "## 📋 Trigger Information" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Event Type | \`${{ github.event_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Triggered by | @${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit | [\`${GITHUB_SHA::7}\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Started at | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # PR情報（pushイベントで見つかった場合）
+          if [ "${{ github.event_name }}" == "push" ] && [ -n "${{ steps.find-pr.outputs.pr_number }}" ]; then
+            echo "## 🔀 Associated Pull Request" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- **PR Number:** [#${{ steps.find-pr.outputs.pr_number }}](https://github.com/${{ github.repository }}/pull/${{ steps.find-pr.outputs.pr_number }})" >> $GITHUB_STEP_SUMMARY
+            echo "- **Title:** ${{ steps.find-pr.outputs.pr_title }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Author:** @${{ steps.find-pr.outputs.pr_author }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Manual runの場合
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "## 🖱️ Manual Deployment" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "- **Target:** \`${{ github.event.inputs.target }}\`" >> $GITHUB_STEP_SUMMARY
+            echo "- **Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # リンク集
+          echo "## 🔗 Quick Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- [📝 Commit Details](https://github.com/${{ github.repository }}/commit/${{ github.sha }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [🌳 Branch: ${{ github.ref_name }}](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [📦 Repository](https://github.com/${{ github.repository }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [📁 Dockerfile](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/${{ matrix.dockerfile }})" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⏳ **Building Docker image...**" >> $GITHUB_STEP_SUMMARY
+
       - name: Build & push ${{ steps.prep.outputs.image }}
+        id: docker_build
         uses: docker/build-push-action@v6
         with:
           context: ${{ steps.prep.outputs.context }}
@@ -154,3 +235,63 @@ jobs:
           pull: true
           provenance: false
           sbom: false
+
+      - name: Check image size
+        id: image_size
+        run: |
+          SIZE=$(docker image inspect ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest --format='{{.Size}}' | awk '{printf "%.2f MB", $1/1024/1024}')
+          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+
+      # ✅ ビルド後のサマリー（成功時のみ表示）
+      - name: Add build results to summary
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## ✅ Build Successful" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Image Name | \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Digest | \`${{ steps.docker_build.outputs.digest }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Platforms | \`linux/amd64, linux/arm64\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Image Size | \`${{ steps.image_size.outputs.size }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Completed | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### 🏷️ Published Tags" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ steps.next.outputs.value }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### 📥 Pull Command" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "docker pull ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🎉 **Deployment completed successfully!**" >> $GITHUB_STEP_SUMMARY
+
+      # ❌ ビルド失敗時のサマリー
+      - name: Add failure summary
+        if: failure()
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## ❌ Build Failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Image:** \`${{ steps.prep.outputs.image }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Please check the logs above for detailed error information." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 Troubleshooting Tips" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Check if the Dockerfile syntax is correct" >> $GITHUB_STEP_SUMMARY
+          echo "- Verify all base images are accessible" >> $GITHUB_STEP_SUMMARY
+          echo "- Ensure sufficient disk space is available" >> $GITHUB_STEP_SUMMARY
+          echo "- Review the build logs for specific error messages" >> $GITHUB_STEP_SUMMARY
