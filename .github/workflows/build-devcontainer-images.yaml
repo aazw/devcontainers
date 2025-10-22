@@ -84,7 +84,7 @@ jobs:
       - name: Find associated PR
         id: find-pr
         if: github.event_name == 'push'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const commit = context.sha;
