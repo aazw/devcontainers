@@ -158,42 +158,42 @@ jobs:
 
           echo "value=${NEXT}" >> "$GITHUB_OUTPUT"
 
-        # 🎯 ビルド前のサマリー（エラー時でも見える情報）
+      # 🎯 ビルド前のサマリー（エラー時でも見える情報）
       - name: Create pre-build summary
         run: |
-          echo "# 🚀 Build Started: ${{ steps.prep.outputs.image }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-
-          # ビルド対象情報
+          # ビルド対象情報（リンク集も統合）
           echo "## 🐳 Build Target" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Image Name | \`${{ steps.prep.outputs.image }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Dockerfile | \`${{ matrix.dockerfile }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Context | \`${{ steps.prep.outputs.context }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Next Tag | \`${{ steps.next.outputs.value }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "<table>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Image Name</td><td><code>${{ steps.prep.outputs.image }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Dockerfile</td><td><a href=\"${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/${{ matrix.dockerfile }}\"><code>${{ matrix.dockerfile }}</code></a></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Context</td><td><code>${{ steps.prep.outputs.context }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Next Tag</td><td><code>${{ steps.next.outputs.value }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Repository</td><td><a href=\"https://github.com/${{ github.repository }}\">${{ github.repository }}</a></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "</table>" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # トリガー情報
           echo "## 📋 Trigger Information" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Event Type | \`${{ github.event_name }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Triggered by | @${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Branch | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Commit | [\`${GITHUB_SHA::7}\`](https://github.com/${{ github.repository }}/commit/${{ github.sha }}) |" >> $GITHUB_STEP_SUMMARY
-          echo "| Started at | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "<table>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Event Type</td><td><code>${{ github.event_name }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Triggered by</td><td>@${{ github.actor }}</td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Branch</td><td><a href=\"https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}\"><code>${{ github.ref_name }}</code></a></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Commit</td><td><a href=\"https://github.com/${{ github.repository }}/commit/${{ github.sha }}\"><code>${GITHUB_SHA::7}</code></a></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Started at</td><td>$(date -u '+%Y-%m-%d %H:%M:%S UTC')</td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "</table>" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           # PR情報（pushイベントで見つかった場合）
           if [ "${{ github.event_name }}" == "push" ] && [ -n "${{ steps.find-pr.outputs.pr_number }}" ]; then
             echo "## 🔀 Associated Pull Request" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "- **PR Number:** [#${{ steps.find-pr.outputs.pr_number }}](https://github.com/${{ github.repository }}/pull/${{ steps.find-pr.outputs.pr_number }})" >> $GITHUB_STEP_SUMMARY
-            echo "- **Title:** ${{ steps.find-pr.outputs.pr_title }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **Author:** @${{ steps.find-pr.outputs.pr_author }}" >> $GITHUB_STEP_SUMMARY
+            echo "<table>" >> $GITHUB_STEP_SUMMARY
+            echo "<tr><td>PR Number</td><td><a href=\"https://github.com/${{ github.repository }}/pull/${{ steps.find-pr.outputs.pr_number }}\">#${{ steps.find-pr.outputs.pr_number }}</a></td></tr>" >> $GITHUB_STEP_SUMMARY
+            echo "<tr><td>Title</td><td>${{ steps.find-pr.outputs.pr_title }}</td></tr>" >> $GITHUB_STEP_SUMMARY
+            echo "<tr><td>Author</td><td>@${{ steps.find-pr.outputs.pr_author }}</td></tr>" >> $GITHUB_STEP_SUMMARY
+            echo "</table>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
 
@@ -201,22 +201,12 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             echo "## 🖱️ Manual Deployment" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "- **Target:** \`${{ github.event.inputs.target }}\`" >> $GITHUB_STEP_SUMMARY
-            echo "- **Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+            echo "<table>" >> $GITHUB_STEP_SUMMARY
+            echo "<tr><td>Target</td><td><code>${{ github.event.inputs.target }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+            echo "<tr><td>Triggered by</td><td>@${{ github.actor }}</td></tr>" >> $GITHUB_STEP_SUMMARY
+            echo "</table>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
-
-          # リンク集
-          echo "## 🔗 Quick Links" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- [📝 Commit Details](https://github.com/${{ github.repository }}/commit/${{ github.sha }})" >> $GITHUB_STEP_SUMMARY
-          echo "- [🌳 Branch: ${{ github.ref_name }}](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }})" >> $GITHUB_STEP_SUMMARY
-          echo "- [📦 Repository](https://github.com/${{ github.repository }})" >> $GITHUB_STEP_SUMMARY
-          echo "- [📁 Dockerfile](${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/${{ matrix.dockerfile }})" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "⏳ **Building Docker image...**" >> $GITHUB_STEP_SUMMARY
 
       - name: Build & push ${{ steps.prep.outputs.image }}
         id: docker_build
@@ -239,17 +229,14 @@ jobs:
       # ✅ ビルド後のサマリー（成功時のみ表示）
       - name: Add build results to summary
         run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
           echo "## ✅ Build Successful" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Image Name | \`ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Digest | \`${{ steps.docker_build.outputs.digest }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Platforms | \`linux/amd64, linux/arm64\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Build Completed | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "<table>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Image Name</td><td><code>ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Digest</td><td><code>${{ steps.docker_build.outputs.digest }}</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Platforms</td><td><code>linux/amd64, linux/arm64</code></td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "<tr><td>Build Completed</td><td>$(date -u '+%Y-%m-%d %H:%M:%S UTC')</td></tr>" >> $GITHUB_STEP_SUMMARY
+          echo "</table>" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           echo "### 🏷️ Published Tags" >> $GITHUB_STEP_SUMMARY
@@ -265,17 +252,11 @@ jobs:
           echo "docker pull ghcr.io/aazw/devcontainers/${{ steps.prep.outputs.image }}:latest" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🎉 **Deployment completed successfully!**" >> $GITHUB_STEP_SUMMARY
 
       # ❌ ビルド失敗時のサマリー
       - name: Add failure summary
         if: failure()
         run: |
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "---" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
           echo "## ❌ Build Failed" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Image:** \`${{ steps.prep.outputs.image }}\`" >> $GITHUB_STEP_SUMMARY
@@ -288,3 +269,4 @@ jobs:
           echo "- Verify all base images are accessible" >> $GITHUB_STEP_SUMMARY
           echo "- Ensure sufficient disk space is available" >> $GITHUB_STEP_SUMMARY
           echo "- Review the build logs for specific error messages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
