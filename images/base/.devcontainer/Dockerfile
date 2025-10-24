@@ -130,13 +130,13 @@ ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.135.7
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=2.0.19
+ARG NPM_CLAUDE_CODE_VERSION=2.0.22
 # renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.1.3
 # renovate: datasource=npm depName=repomix packageName=repomix
 ARG NPM_REPOMIX_VERSION=1.7.0
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.46.0
+ARG NPM_OPENAI_CODEX_VERSION=0.47.0
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
@@ -148,7 +148,7 @@ ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
 ARG PIP_UV_VERSION=0.9.3
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.14.0
+ARG PIP_RUFF_VERSION=0.14.1
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
