@@ -84,7 +84,7 @@ ARG DEBIAN_IPSET_VERSION=7.17-1
 # renovate: datasource=deb depName=iproute2 packageName=iproute2 versioning=deb
 ARG DEBIAN_IPROUTE2_VERSION=6.1.0-3
 # renovate: datasource=deb depName=bind9-dnsutils packageName=bind9-dnsutils versioning=deb
-ARG DEBIAN_BIND9_DNSUTILS_VERSION=1:9.18.33-1~deb12u2
+ARG DEBIAN_BIND9_DNSUTILS_VERSION=1:9.18.41-1~deb12u1
 # renovate: datasource=deb depName=aggregate packageName=aggregate versioning=deb
 ARG DEBIAN_AGGREGATE_VERSION=1.6-7+b1
 # renovate: datasource=deb depName=expat packageName=expat versioning=deb
@@ -103,6 +103,8 @@ ARG GO_GO_TASK_VERSION=v3.45.4
 ARG GO_CURLIE_VERSION=v1.8.2
 # renovate: datasource=github-tags depName=usql packageName=xo/usql
 ARG GO_USQL_VERSION=v0.19.26
+# renovate: datasource=github-tags depName=dive packageName=wagoodman/dive
+ARG GO_DIVE_VERSION=v0.13.1
 
 # for cargo tools
 # renovate: datasource=crate depName=cargo-binstall packageName=cargo-binstall
@@ -175,6 +177,8 @@ ARG OTHER_HADOLINT_VERSION=v2.14.0
 ARG OTHER_GITLEAKS_VERSION=8.28.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
 ARG OTHER_FZF_VERSION=0.66.0
+# renovate: datasource=github-releases depName=lazygit packageName=jesseduffield/lazygit
+ARG OTHER_LAZYGIT_VERSION=0.55.1
 
 # ##########################################################################################
 # builder images
@@ -214,6 +218,12 @@ RUN go install github.com/rs/curlie@${GO_CURLIE_VERSION} \
 ARG GO_USQL_VERSION
 RUN go install -tags most github.com/xo/usql@${GO_USQL_VERSION} \
     && usql --version
+
+# dive
+# https://github.com/wagoodman/dive
+ARG GO_DIVE_VERSION
+RUN go install github.com/wagoodman/dive@${GO_DIVE_VERSION} \
+    && dive --version
 
 # rust
 # https://hub.docker.com/_/rust
@@ -377,6 +387,10 @@ COPY --from=golang-builder /go/bin/curlie /usr/local/bin/
 # usql
 # refs above
 COPY --from=golang-builder /go/bin/usql /usr/local/bin/
+
+# dive
+# refs above
+COPY --from=golang-builder /go/bin/dive /usr/local/bin/
 
 # eza
 # refs above
@@ -686,6 +700,20 @@ RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
     && rm -rf /fzf \
     && cd / \
     && fzf --version
+
+# lazygit
+# https://github.com/jesseduffield/lazygit
+ARG OTHER_LAZYGIT_VERSION
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/' | sed 's/amd64/x86_64/') \
+    && mkdir -p /lazygit \
+    && curl -fsSL -o /lazygit/lazygit.tar.gz https://github.com/jesseduffield/lazygit/releases/download/v${OTHER_LAZYGIT_VERSION}/lazygit_${OTHER_LAZYGIT_VERSION}_linux_${ARCH}.tar.gz \
+    && cd /lazygit/ \
+    && tar -xvzf lazygit.tar.gz \
+    && chmod +x lazygit \
+    && mv lazygit /usr/local/bin/ \
+    && rm -rf /lazygit \
+    && cd / \
+    && lazygit --version
 
 # add vscode user
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user#_creating-a-nonroot-user
