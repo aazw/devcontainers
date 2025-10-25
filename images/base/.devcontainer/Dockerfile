@@ -136,7 +136,7 @@ ARG NPM_CLAUDE_CODE_VERSION=2.0.22
 # renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.1.3
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.7.0
+ARG NPM_REPOMIX_VERSION=1.8.0
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
 ARG NPM_OPENAI_CODEX_VERSION=0.47.0
 
