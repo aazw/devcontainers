@@ -170,7 +170,7 @@ ARG OTHER_TAPLO_VERSION=0.10.0
 # renovate: datasource=github-releases depName=shellcheck packageName=koalaman/shellcheck
 ARG OTHER_SHELLCHECK_VERSION=v0.11.0
 # renovate: datasource=github-releases depName=ripgrep packageName=BurntSushi/ripgrep
-ARG OTHER_RIPGREP_VERSION=14.1.1
+ARG OTHER_RIPGREP_VERSION=15.0.0
 # renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
