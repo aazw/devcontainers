@@ -12,7 +12,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 ARG DOCKER_JAVA_VERSION=21-ubuntu
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
-ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=42
+ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=43
 
 # java
 # https://learn.microsoft.com/ja-jp/java/openjdk/containers#create-a-custom-java-runtime
