@@ -12,7 +12,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 ARG DOCKER_SWIFT_VERSION=6.2.0
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
-ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=40
+ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=42
 
 # for debian tools (apt-get)
 # https://packages.debian.org/search?keywords=search
