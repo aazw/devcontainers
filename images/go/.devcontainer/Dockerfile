@@ -12,7 +12,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 ARG DOCKER_GOLANG_VERSION=1.25.1
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
-ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=36
+ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=40
 
 # golang
 # https://hub.docker.com/_/golang
