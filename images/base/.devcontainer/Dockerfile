@@ -105,6 +105,8 @@ ARG GO_CURLIE_VERSION=v1.8.2
 ARG GO_USQL_VERSION=v0.19.26
 # renovate: datasource=github-tags depName=dive packageName=wagoodman/dive
 ARG GO_DIVE_VERSION=v0.13.1
+# renovate: datasource=github-tags depName=diffoci packageName=reproducible-containers/diffoci
+ARG GO_DIFFOCI_VERSION=v0.1.7
 
 # for cargo tools
 # renovate: datasource=crate depName=cargo-binstall packageName=cargo-binstall
@@ -224,6 +226,12 @@ RUN go install -tags most github.com/xo/usql@${GO_USQL_VERSION} \
 ARG GO_DIVE_VERSION
 RUN go install github.com/wagoodman/dive@${GO_DIVE_VERSION} \
     && dive --version
+
+# diffoci
+# https://github.com/reproducible-containers/diffoci
+ARG GO_DIFFOCI_VERSION
+RUN go install github.com/reproducible-containers/diffoci/cmd/diffoci@${GO_DIFFOCI_VERSION} \
+    && diffoci --version
 
 # rust
 # https://hub.docker.com/_/rust
@@ -391,6 +399,10 @@ COPY --from=golang-builder /go/bin/usql /usr/local/bin/
 # dive
 # refs above
 COPY --from=golang-builder /go/bin/dive /usr/local/bin/
+
+# diffoci
+# refs above
+COPY --from=golang-builder /go/bin/diffoci /usr/local/bin/
 
 # eza
 # refs above
