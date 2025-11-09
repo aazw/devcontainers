@@ -432,3 +432,7 @@ core.*
 # Claude Code data (keep settings.json, ignore session data)
 .claude/*
 !.claude/settings.json
+
+# Temporary directory
+tmp
+tmp/*
