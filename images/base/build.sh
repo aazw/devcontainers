@@ -7,7 +7,7 @@ cd "${SCRIPT_DIR}"
 
 # imgaes/baseをビルド
 echo "building images/base"
-docker build -t devcontainer-base ./.devcontainer/
+docker build -t devcontainer-base --progress=plain ./.devcontainer/
 docker tag devcontainer-base ghcr.io/aazw/devcontainers/base:latest
 
 LATEST_NUMBER_TAG=$(curl -s "https://ghcr.io/token?scope=repository:aazw/devcontainers/base:pull" |

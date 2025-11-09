@@ -12,4 +12,4 @@ echo "building images/base as ghcr.io/aazw/devcontainers/base:*"
 # imgaes/baseをローカル参照する形で、imgaes/goをビルド
 echo "" # 空行挿入
 echo "building images/go with ghcr.io/aazw/devcontainers/base:latest"
-docker build -t devcontainer-go ./.devcontainer/
+docker build -t devcontainer-go --progress=plain ./.devcontainer/
