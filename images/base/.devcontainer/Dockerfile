@@ -91,6 +91,8 @@ ARG DEBIAN_AGGREGATE_VERSION=1.6-7+b1
 ARG DEBIAN_EXPAT_VERSION=2.5.0-1+deb12u2
 # renovate: datasource=deb depName=libpq-dev packageName=libpq-dev versioning=deb
 ARG DEBIAN_LIBPQ_DEV_VERSION=15.14-0+deb12u1
+# renovate: datasource=deb depName=chromium packageName=chromium versioning=deb
+ARG DEBIAN_CHROMIUM_VERSION=142.0.7444.134-1~deb12u1
 
 # for go tools
 # renovate: datasource=github-tags depName=dockerfmt packageName=reteps/dockerfmt
@@ -141,6 +143,10 @@ ARG NPM_CCUSAGE_VERSION=17.1.3
 ARG NPM_REPOMIX_VERSION=1.8.0
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
 ARG NPM_OPENAI_CODEX_VERSION=0.53.0
+# renovate: datasource=npm depName=puppeteer packageName=puppeteer
+ARG NPM_PUPPETEER_VERSION=24.11.1
+# renovate: datasource=npm depName=mermaid-cli packageName=@mermaid-js/mermaid-cli
+ARG NPM_MERMAID_CLI_VERSION=11.4.1
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
@@ -527,6 +533,28 @@ RUN npm install -g repomix@${NPM_REPOMIX_VERSION} \
 ARG NPM_OPENAI_CODEX_VERSION
 RUN npm install -g @openai/codex@${NPM_OPENAI_CODEX_VERSION}
 
+# puppeteer
+# https://github.com/puppeteer/puppeteer
+# https://www.npmjs.com/package/puppeteer
+ARG DEBIAN_CHROMIUM_VERSION
+RUN apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+        chromium=${DEBIAN_CHROMIUM_VERSION} \
+    && rm -rf /var/lib/apt/lists/*
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+ARG NPM_PUPPETEER_VERSION
+RUN npm install -g puppeteer@${NPM_PUPPETEER_VERSION}
+
+# mermaid-cli
+# https://github.com/mermaid-js/mermaid-cli
+# https://www.npmjs.com/package/@mermaid-js/mermaid-cli
+# mermaid-cli requires Chromium for rendering diagrams via Puppeteer
+ARG NPM_MERMAID_CLI_VERSION
+RUN npm install -g @mermaid-js/mermaid-cli@${NPM_MERMAID_CLI_VERSION} \
+    && mmdc --version
+
 # python
 # refs above
 ARG DEBIAN_EXPAT_VERSION
@@ -743,3 +771,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
+
+# puppeteer-config.json with alias
+COPY ./puppeteer-config.json /home/vscode/puppeteer-config.json
+RUN echo "alias mmdc='mmdc --puppeteerConfigFile /home/vscode/puppeteer-config.json'" >>/home/vscode/.bashrc
