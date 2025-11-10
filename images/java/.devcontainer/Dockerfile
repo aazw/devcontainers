@@ -9,7 +9,7 @@
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # renovate: datasource=docker depName=mcr.microsoft.com/openjdk/jdk packageName=mcr.microsoft.com/openjdk/jdk versioning=docker
-ARG DOCKER_JAVA_VERSION=21-ubuntu
+ARG DOCKER_JAVA_VERSION=25-ubuntu
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
 ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=45
