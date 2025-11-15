@@ -136,17 +136,17 @@ ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.135.7
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=2.0.31
+ARG NPM_CLAUDE_CODE_VERSION=2.0.36
 # renovate: datasource=npm depName=ccusage packageName=ccusage
-ARG NPM_CCUSAGE_VERSION=17.1.3
+ARG NPM_CCUSAGE_VERSION=17.1.4
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.8.0
+ARG NPM_REPOMIX_VERSION=1.9.0
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.53.0
+ARG NPM_OPENAI_CODEX_VERSION=0.56.0
 # renovate: datasource=npm depName=puppeteer packageName=puppeteer
-ARG NPM_PUPPETEER_VERSION=24.11.1
+ARG NPM_PUPPETEER_VERSION=24.29.1
 # renovate: datasource=npm depName=mermaid-cli packageName=@mermaid-js/mermaid-cli
-ARG NPM_MERMAID_CLI_VERSION=11.4.1
+ARG NPM_MERMAID_CLI_VERSION=11.12.0
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
@@ -156,9 +156,9 @@ ARG PIP_PIPX_VERSION=1.8.0
 # renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.9.7
+ARG PIP_UV_VERSION=0.9.8
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.14.3
+ARG PIP_RUFF_VERSION=0.14.4
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
@@ -182,7 +182,7 @@ ARG OTHER_RIPGREP_VERSION=15.1.0
 # renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
-ARG OTHER_GITLEAKS_VERSION=8.28.0
+ARG OTHER_GITLEAKS_VERSION=8.29.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
 ARG OTHER_FZF_VERSION=0.66.1
 # renovate: datasource=github-releases depName=lazygit packageName=jesseduffield/lazygit
