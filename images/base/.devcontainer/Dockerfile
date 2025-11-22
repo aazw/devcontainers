@@ -100,7 +100,7 @@ ARG GO_DOCKERFMT_VERSION=v0.3.9
 # renovate: datasource=github-tags depName=shfmt packageName=mvdan/sh
 ARG GO_SHFMT_VERSION=v3.12.0
 # renovate: datasource=github-tags depName=go-task packageName=go-task/task
-ARG GO_GO_TASK_VERSION=v3.45.4
+ARG GO_GO_TASK_VERSION=v3.45.5
 # renovate: datasource=github-tags depName=curlie packageName=rs/curlie
 ARG GO_CURLIE_VERSION=v1.8.2
 # renovate: datasource=github-tags depName=usql packageName=xo/usql
@@ -112,7 +112,7 @@ ARG GO_DIFFOCI_VERSION=v0.1.7
 
 # for cargo tools
 # renovate: datasource=crate depName=cargo-binstall packageName=cargo-binstall
-ARG CARGO_BINSTALL_VERSION=1.15.7
+ARG CARGO_BINSTALL_VERSION=1.16.0
 # renovate: datasource=crate depName=eza packageName=eza
 ARG CARGO_EZA_VERSION=0.23.3
 # renovate: datasource=crate depName=tokei packageName=tokei
@@ -136,17 +136,17 @@ ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.135.7
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=2.0.31
+ARG NPM_CLAUDE_CODE_VERSION=2.0.42
 # renovate: datasource=npm depName=ccusage packageName=ccusage
-ARG NPM_CCUSAGE_VERSION=17.1.3
+ARG NPM_CCUSAGE_VERSION=17.1.5
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.8.0
+ARG NPM_REPOMIX_VERSION=1.9.1
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.53.0
+ARG NPM_OPENAI_CODEX_VERSION=0.58.0
 # renovate: datasource=npm depName=puppeteer packageName=puppeteer
-ARG NPM_PUPPETEER_VERSION=24.11.1
+ARG NPM_PUPPETEER_VERSION=24.30.0
 # renovate: datasource=npm depName=mermaid-cli packageName=@mermaid-js/mermaid-cli
-ARG NPM_MERMAID_CLI_VERSION=11.4.1
+ARG NPM_MERMAID_CLI_VERSION=11.12.0
 
 # for pip tools
 # renovate: datasource=pypi depName=pip packageName=pip
@@ -156,9 +156,9 @@ ARG PIP_PIPX_VERSION=1.8.0
 # renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.9.7
+ARG PIP_UV_VERSION=0.9.9
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.14.3
+ARG PIP_RUFF_VERSION=0.14.5
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
@@ -170,7 +170,7 @@ ARG PIP_GITINGEST_VERSION=0.3.1
 # renovate: datasource=github-releases depName=jq packageName=jqlang/jq
 ARG OTHER_JQ_VERSION=1.8.0
 # renovate: datasource=github-releases depName=yq packageName=mikefarah/yq
-ARG OTHER_YQ_VERSION=4.48.1
+ARG OTHER_YQ_VERSION=4.48.2
 # renovate: datasource=github-releases depName=xq packageName=sibprogrammer/xq
 ARG OTHER_XQ_VERSION=1.3.0
 # renovate: datasource=github-releases depName=taplo packageName=tamasfe/taplo
@@ -182,7 +182,7 @@ ARG OTHER_RIPGREP_VERSION=15.1.0
 # renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
-ARG OTHER_GITLEAKS_VERSION=8.28.0
+ARG OTHER_GITLEAKS_VERSION=8.29.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
 ARG OTHER_FZF_VERSION=0.66.1
 # renovate: datasource=github-releases depName=lazygit packageName=jesseduffield/lazygit
