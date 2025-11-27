@@ -38,7 +38,7 @@ jobs:
     outputs:
       changed_files: ${{ steps.filter.outputs.devcontainers_files || steps.all.outputs.devcontainers_files || '[]' }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: dorny/paths-filter@v3
         if: github.event_name == 'push'
         id: filter
@@ -77,7 +77,7 @@ jobs:
       matrix:
         dockerfile: ${{ fromJson(needs.detect-changes.outputs.changed_files) }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       # Push イベントの場合、PR情報を取得
       - name: Find associated PR
