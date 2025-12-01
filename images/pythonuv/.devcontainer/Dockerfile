@@ -9,7 +9,7 @@
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
-ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=43
+ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=45
 
 # for pip tools
 # renovate: datasource=pypi depName=wheel packageName=wheel
