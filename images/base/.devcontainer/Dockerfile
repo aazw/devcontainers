@@ -153,12 +153,6 @@ ARG NPM_MERMAID_CLI_VERSION=11.4.1
 ARG PIP_PIP_VERSION=25.3
 # renovate: datasource=pypi depName=pipx packageName=pipx
 ARG PIP_PIPX_VERSION=1.8.0
-# renovate: datasource=pypi depName=wheel packageName=wheel
-ARG PIP_WHEEL_VERSION=0.45.1
-# renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.9.7
-# renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.14.3
 # renovate: datasource=pypi depName=httpie packageName=httpie
 ARG PIP_HTTPIE_VERSION=3.2.4
 # renovate: datasource=pypi depName=pgcli packageName=pgcli
@@ -581,25 +575,6 @@ ARG PIP_PIPX_VERSION
 RUN pip install pipx==${PIP_PIPX_VERSION}
 RUN pipx ensurepath \
     && pipx --version
-
-# wheel
-# https://pypi.org/project/wheel/
-ARG PIP_WHEEL_VERSION
-RUN pip install wheel==${PIP_WHEEL_VERSION} \
-    && wheel version
-
-# uv
-# https://github.com/astral-sh/uv
-# https://pypi.org/project/uv/
-ARG PIP_UV_VERSION
-RUN pip install uv==${PIP_UV_VERSION} \
-    && uv --version
-
-# ruff
-# https://github.com/astral-sh/ruff
-ARG PIP_RUFF_VERSION
-RUN pip install ruff==${PIP_RUFF_VERSION} \
-    && ruff --version
 
 # httpie
 # https://github.com/httpie/cli
