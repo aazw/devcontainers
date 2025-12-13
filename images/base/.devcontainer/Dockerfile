@@ -130,21 +130,21 @@ ARG CARGO_BROOT_VERSION=1.51.0
 
 # for npm tools
 # renovate: datasource=npm depName=npm packageName=npm
-ARG NPM_NPM_VERSION=11.6.3
+ARG NPM_NPM_VERSION=11.6.4
 # renovate: datasource=npm depName=prettier packageName=prettier
-ARG NPM_PRETTIER_VERSION=3.6.2
+ARG NPM_PRETTIER_VERSION=3.7.4
 # renovate: datasource=npm depName=renovate packageName=renovate
 ARG NPM_RENOVATE_VERSION=41.135.7
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
-ARG NPM_CLAUDE_CODE_VERSION=2.0.50
+ARG NPM_CLAUDE_CODE_VERSION=2.0.60
 # renovate: datasource=npm depName=ccusage packageName=ccusage
 ARG NPM_CCUSAGE_VERSION=17.1.6
 # renovate: datasource=npm depName=repomix packageName=repomix
-ARG NPM_REPOMIX_VERSION=1.9.1
+ARG NPM_REPOMIX_VERSION=1.9.2
 # renovate: datasource=npm depName=openai-codex packageName=@openai/codex
-ARG NPM_OPENAI_CODEX_VERSION=0.63.0
+ARG NPM_OPENAI_CODEX_VERSION=0.65.0
 # renovate: datasource=npm depName=puppeteer packageName=puppeteer
-ARG NPM_PUPPETEER_VERSION=24.31.0
+ARG NPM_PUPPETEER_VERSION=24.32.0
 # renovate: datasource=npm depName=mermaid-cli packageName=@mermaid-js/mermaid-cli
 ARG NPM_MERMAID_CLI_VERSION=11.12.0
 
@@ -164,7 +164,7 @@ ARG PIP_GITINGEST_VERSION=0.3.1
 # renovate: datasource=github-releases depName=jq packageName=jqlang/jq
 ARG OTHER_JQ_VERSION=1.8.0
 # renovate: datasource=github-releases depName=yq packageName=mikefarah/yq
-ARG OTHER_YQ_VERSION=4.49.1
+ARG OTHER_YQ_VERSION=4.49.2
 # renovate: datasource=github-releases depName=xq packageName=sibprogrammer/xq
 ARG OTHER_XQ_VERSION=1.3.0
 # renovate: datasource=github-releases depName=taplo packageName=tamasfe/taplo
@@ -176,11 +176,11 @@ ARG OTHER_RIPGREP_VERSION=15.1.0
 # renovate: datasource=github-releases depName=hadolint packageName=hadolint/hadolint
 ARG OTHER_HADOLINT_VERSION=v2.14.0
 # renovate: datasource=github-releases depName=gitleaks packageName=gitleaks/gitleaks
-ARG OTHER_GITLEAKS_VERSION=8.29.1
+ARG OTHER_GITLEAKS_VERSION=8.30.0
 # renovate: datasource=github-releases depName=fzf packageName=junegunn/fzf
 ARG OTHER_FZF_VERSION=0.67.0
 # renovate: datasource=github-releases depName=lazygit packageName=jesseduffield/lazygit
-ARG OTHER_LAZYGIT_VERSION=0.56.0
+ARG OTHER_LAZYGIT_VERSION=0.57.0
 
 # ##########################################################################################
 # builder images
