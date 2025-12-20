@@ -9,7 +9,7 @@
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # renovate: datasource=docker depName=swift packageName=swift versioning=docker
-ARG DOCKER_SWIFT_VERSION=6.2.0
+ARG DOCKER_SWIFT_VERSION=6.2.3
 
 # renovate: datasource=docker depName=ghcr.io/aazw/devcontainers/base packageName=ghcr.io/aazw/devcontainers/base
 ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=45
