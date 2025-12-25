@@ -15,9 +15,9 @@ ARG DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION=45
 # renovate: datasource=pypi depName=wheel packageName=wheel
 ARG PIP_WHEEL_VERSION=0.45.1
 # renovate: datasource=pypi depName=uv packageName=uv
-ARG PIP_UV_VERSION=0.9.7
+ARG PIP_UV_VERSION=0.9.18
 # renovate: datasource=pypi depName=ruff packageName=ruff
-ARG PIP_RUFF_VERSION=0.14.3
+ARG PIP_RUFF_VERSION=0.14.10
 
 # main image
 FROM ghcr.io/aazw/devcontainers/base:${DOCKER_AAZW_DEVCONTAINERS_BASE_VERSION}
