@@ -116,7 +116,7 @@ ARG CARGO_BINSTALL_VERSION=1.16.2
 # renovate: datasource=crate depName=eza packageName=eza
 ARG CARGO_EZA_VERSION=0.23.3
 # renovate: datasource=crate depName=tokei packageName=tokei
-ARG CARGO_TOKEI_VERSION=12.1.2
+ARG CARGO_TOKEI_VERSION=13.0.0
 # renovate: datasource=crate depName=git-delta packageName=git-delta
 ARG CARGO_DELTA_VERSION=0.18.2
 # renovate: datasource=crate depName=fd-find packageName=fd-find
@@ -134,7 +134,7 @@ ARG NPM_NPM_VERSION=11.6.3
 # renovate: datasource=npm depName=prettier packageName=prettier
 ARG NPM_PRETTIER_VERSION=3.6.2
 # renovate: datasource=npm depName=renovate packageName=renovate
-ARG NPM_RENOVATE_VERSION=41.135.7
+ARG NPM_RENOVATE_VERSION=42.64.1
 # renovate: datasource=npm depName=claude-code packageName=@anthropic-ai/claude-code
 ARG NPM_CLAUDE_CODE_VERSION=2.0.50
 # renovate: datasource=npm depName=ccusage packageName=ccusage
